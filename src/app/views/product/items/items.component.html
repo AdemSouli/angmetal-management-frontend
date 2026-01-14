@@ -1,0 +1,88 @@
+<!-- Button to Add Product -->
+<button pButton label="Add Product" icon="pi pi-plus" class="p-button-primary" (click)="goToAddProduct()"></button>
+<br>
+
+
+<!-- Pagination Controls -->
+<p-paginator [rows]="rows"
+             [totalRecords]="products.length"
+             [rowsPerPageOptions]="[20, 30]"
+             (onPageChange)="onPageChange($event)">
+</p-paginator>
+
+<!-- Grid Container for Cards -->
+<div class="card-grid">
+  <p-card *ngFor="let product of paginatedProducts"
+          header="{{ product.name }}"
+          [style]="{ 'width': '19rem',   'margin-bottom': '2em'}"
+          [styleClass]="product.name">
+    <ng-template pTemplate="header">
+      <!-- Optional image placeholder -->
+      <!-- <img alt="Card" src="assets/showcase/images/usercard.png"> -->
+    </ng-template>
+
+    <p><span>Description:</span> {{ product.description }}</p>
+    <p><span>Quantity:</span> {{ product.quantiteEnStock }}</p>
+    <p><span>Price:</span> {{ product.prixUnitaire | currency: 'TND' }}</p>
+    <p><span>Tax:</span> {{ product.taxe }}</p>
+
+    <button pButton
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-success"
+            (click)="editProduct(product)">
+    </button>
+
+    <button pButton
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-danger"
+            (click)="deleteProduct(product.productID)">
+    </button>
+  </p-card>
+</div>
+<!-- Pagination Controls -->
+<p-paginator [rows]="rows"
+             [totalRecords]="products.length"
+             [rowsPerPageOptions]="[20, 30]"
+             (onPageChange)="onPageChange($event)">
+</p-paginator>
+
+
+<!-- Modal Dialog for Add/Edit Product -->
+<p-dialog [(visible)]="display" [modal]="true" [closable]="false" [header]="isEdit ? 'Edit Product' : 'Add Product'" [style]="{width: '400px'}">
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="nom">Product Name</label>
+      <input id="nom" type="text" pInputText [(ngModel)]="selectedProduct.name" required />
+    </div>
+
+    <div class="p-field">
+      <label for="description">Description</label>
+      <input id="description" type="text" pInputText [(ngModel)]="selectedProduct.description" required />
+    </div>
+
+    <div class="p-field">
+      <label for="prixUnitaire">Price</label>
+      <input id="prixUnitaire" type="number" pInputText [(ngModel)]="selectedProduct.prixUnitaire" required />
+    </div>
+
+    <div class="p-field">
+      <label for="quantiteEnStock">Quantity in Stock</label>
+      <input id="quantiteEnStock" type="number" pInputText [(ngModel)]="selectedProduct.quantiteEnStock" required />
+    </div>
+
+  <div class="p-field">
+  <label for="taxe">Tax</label>
+  <select id="taxe" [(ngModel)]="selectedProduct.taxe" class="p-inputtext" required>
+    <option *ngFor="let taxe of taxOptions" [value]="taxe">{{ taxe }}</option>
+  </select>
+</div>
+
+
+    <p-footer>
+      <button pButton label="Cancel" icon="pi pi-times" class="p-button-text" (click)="closeDialog()"></button>
+      <button pButton label="Save" icon="pi pi-check" class="p-button-text" (click)="saveProduct()"></button>
+    </p-footer>
+  </div>
+</p-dialog>
+<p-confirmDialog></p-confirmDialog>
+<p-toast></p-toast>

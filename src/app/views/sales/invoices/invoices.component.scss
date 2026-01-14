@@ -1,0 +1,62 @@
+@font-face {
+  font-family: 'Venera';
+  src: url('/assets/fonts/IvyStyleSans-Regular.ttf') format('truetype');
+  src: url('/assets/fonts/IvyStyleSans-Bold.ttf') format('truetype');
+  font-weight: 700; 
+  font-style: normal;
+}
+.ba3do {
+  font-family: 'IvyStyleSans', sans-serif;   
+  text-align: center;
+  display: flex ;
+  justify-content: space-between;
+}
+.p-text-bold{
+  font-weight: bold;
+}
+.p-field {
+  text-align: left;
+}
+
+.buttonet{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Smooth transition when collapsing the panels */
+.invoice-panel .p-panel-header {
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  /* Optional: Add margin between collapsed panels */
+  .invoice-panel .p-panel-header:focus {
+    margin-bottom: 15px;  /* Space after collapsing the panel */
+  }
+  
+  /* Smooth transition for the content collapsing */
+  .invoice-panel .p-panel-content {
+    transition: max-height 0.5s ease-in-out;
+    overflow: hidden;
+  }
+  
+  /* Optional: Change collapsed panel appearance */
+  .invoice-panel .p-panel.collapsed .p-panel-header {
+    background-color: #f1f1f1;
+    color: #444;
+  }
+  
+  /* Additional Styling for Panels for cleaner UI */
+  .invoice-sub-panel .p-panel-header {
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+  }
+  
+  .invoice-sub-panel .p-panel-content {
+    padding: 10px;
+  }
+  
+  .invoice-panel .p-panel-header {
+    padding: 10px;
+    font-size: 16px;
+  }
+ 

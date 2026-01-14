@@ -1,0 +1,22 @@
+.position-relative {
+    position: relative;
+  }
+  
+  .icon-container {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #6c757d;
+    pointer-events: none;
+  }
+  
+  .input-group input {
+    padding-left: 40px !important; /* Ensure spacing to avoid overlap with icon */
+  }
+  
+  .icon-sm {
+    width: 16px;
+    height: 16px;
+  }
+  

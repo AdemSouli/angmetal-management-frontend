@@ -1,0 +1,33 @@
+
+.dashboard {
+    margin: 20px;
+  }
+
+  .stats-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .stat-box {
+    width: 30%;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+
+  .stat-box h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .stat-box p {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .chart-container {
+    margin-top: 20px;
+  }

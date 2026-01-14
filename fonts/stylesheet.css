@@ -1,0 +1,120 @@
+@font-face {
+    font-family: 'Ivy Style Sans';
+    src: url('IvyStyleSans-Thin.eot');
+    src: local('Ivy Style Sans Thin'), local('IvyStyleSans-Thin'),
+        url('IvyStyleSans-Thin.eot?#iefix') format('embedded-opentype'),
+        url('IvyStyleSans-Thin.woff2') format('woff2'),
+        url('IvyStyleSans-Thin.woff') format('woff'),
+        url('IvyStyleSans-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ivy Style Sans';
+    src: url('IvyStyleSans-Regular.eot');
+    src: local('Ivy Style Sans Regular'), local('IvyStyleSans-Regular'),
+        url('IvyStyleSans-Regular.eot?#iefix') format('embedded-opentype'),
+        url('IvyStyleSans-Regular.woff2') format('woff2'),
+        url('IvyStyleSans-Regular.woff') format('woff'),
+        url('IvyStyleSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ivy Style Sans';
+    src: url('IvyStyleSans-LightItalic.eot');
+    src: local('Ivy Style Sans Light Italic'), local('IvyStyleSans-LightItalic'),
+        url('IvyStyleSans-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('IvyStyleSans-LightItalic.woff2') format('woff2'),
+        url('IvyStyleSans-LightItalic.woff') format('woff'),
+        url('IvyStyleSans-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ivy Style Sans';
+    src: url('IvyStyleSans-Bold.eot');
+    src: local('Ivy Style Sans Bold'), local('IvyStyleSans-Bold'),
+        url('IvyStyleSans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('IvyStyleSans-Bold.woff2') format('woff2'),
+        url('IvyStyleSans-Bold.woff') format('woff'),
+        url('IvyStyleSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ivy Style Sans';
+    src: url('IvyStyleSans-SemiBoldItalic.eot');
+    src: local('Ivy Style Sans SemiBold Italic'), local('IvyStyleSans-SemiBoldItalic'),
+        url('IvyStyleSans-SemiBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('IvyStyleSans-SemiBoldItalic.woff2') format('woff2'),
+        url('IvyStyleSans-SemiBoldItalic.woff') format('woff'),
+        url('IvyStyleSans-SemiBoldItalic.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ivy Style Sans';
+    src: url('IvyStyleSans-BoldItalic.eot');
+    src: local('Ivy Style Sans Bold Italic'), local('IvyStyleSans-BoldItalic'),
+        url('IvyStyleSans-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('IvyStyleSans-BoldItalic.woff2') format('woff2'),
+        url('IvyStyleSans-BoldItalic.woff') format('woff'),
+        url('IvyStyleSans-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ivy Style Sans';
+    src: url('IvyStyleSans-ThinItalic.eot');
+    src: local('Ivy Style Sans Thin Italic'), local('IvyStyleSans-ThinItalic'),
+        url('IvyStyleSans-ThinItalic.eot?#iefix') format('embedded-opentype'),
+        url('IvyStyleSans-ThinItalic.woff2') format('woff2'),
+        url('IvyStyleSans-ThinItalic.woff') format('woff'),
+        url('IvyStyleSans-ThinItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ivy Style Sans';
+    src: url('IvyStyleSans-Italic.eot');
+    src: local('Ivy Style Sans Italic'), local('IvyStyleSans-Italic'),
+        url('IvyStyleSans-Italic.eot?#iefix') format('embedded-opentype'),
+        url('IvyStyleSans-Italic.woff2') format('woff2'),
+        url('IvyStyleSans-Italic.woff') format('woff'),
+        url('IvyStyleSans-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ivy Style Sans';
+    src: url('IvyStyleSans-SemiBold.eot');
+    src: local('Ivy Style Sans SemiBold'), local('IvyStyleSans-SemiBold'),
+        url('IvyStyleSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('IvyStyleSans-SemiBold.woff2') format('woff2'),
+        url('IvyStyleSans-SemiBold.woff') format('woff'),
+        url('IvyStyleSans-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ivy Style Sans';
+    src: url('IvyStyleSans-Light.eot');
+    src: local('Ivy Style Sans Light'), local('IvyStyleSans-Light'),
+        url('IvyStyleSans-Light.eot?#iefix') format('embedded-opentype'),
+        url('IvyStyleSans-Light.woff2') format('woff2'),
+        url('IvyStyleSans-Light.woff') format('woff'),
+        url('IvyStyleSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+

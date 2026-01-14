@@ -1,0 +1,7 @@
+package-lock.json
+package.json
+dist
+karma.conf.js
+test.ts
+main.ts
+node_modules/*

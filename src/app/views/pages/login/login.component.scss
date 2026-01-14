@@ -1,0 +1,21 @@
+.position-relative {
+  position: relative;
+}
+
+.icon-container {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #6c757d;
+  pointer-events: none;
+}
+
+.form-control {
+  padding-left: 40px !important; /* Ensure spacing for the icon */
+}
+
+.icon-sm {
+  width: 16px;
+  height: 16px;
+}

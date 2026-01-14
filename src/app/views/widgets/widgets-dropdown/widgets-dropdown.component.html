@@ -1,0 +1,84 @@
+<c-row>
+  <!-- Existing line chart widget - Users -->
+  <c-col sm="6" xl="3">
+    <c-widget-stat-a class="mb-4" color="primary">
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        SALES COUNT<br>
+        {{kpiData.creditCount}}
+        <span class="fs-6 fw-normal">
+          <!-- <svg cIcon name="cilArrowBottom"></svg> -->
+        </span>
+      </ng-template>
+      <ng-template cTemplateId="widgetActionTemplate">
+   
+      </ng-template>
+      <ng-template cTemplateId="widgetChartTemplate">
+        
+      </ng-template>
+    </c-widget-stat-a>
+  </c-col>
+  
+  <!-- Existing line chart widget - Income -->
+  <c-col sm="6" xl="3">
+    <c-widget-stat-a [title]="" class="mb-4" color="info">
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        Purchase COUNT<br>
+        {{kpiData.debitCount}}
+           
+      </ng-template>
+    </c-widget-stat-a>
+  </c-col>
+  
+  <!-- Existing Conversion Rate widget with line chart -->
+  <c-col sm="6" xl="3">
+    <c-widget-stat-a [title]="" class="mb-4" color="warning">
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        TOTAL SALES <br>
+        {{kpiData.totalSales | currency}}
+      </ng-template>
+      <ng-template cTemplateId="widgetActionTemplate">
+        <c-dropdown alignment="end" variant="btn-group">
+     
+        </c-dropdown>
+      </ng-template>    
+    </c-widget-stat-a>
+  </c-col>
+
+  <!-- Existing Sessions widget with bar chart -->
+  <c-col sm="6" xl="3">
+    <c-widget-stat-a [title]="" class="mb-4" color="danger">
+      <ng-template cTemplateId="widgetValueTemplate" ngPreserveWhitespaces>
+        TOTAL Purchase <br>
+        {{kpiData.totalPurchases | currency}}
+      </ng-template>
+  
+    </c-widget-stat-a>
+  </c-col>
+</c-row>
+
+
+
+<!-- jdid ya rabe7 -->
+
+
+<div class="row">
+  <div class="col-md-6">
+    <canvas id="salesPurchasesChart"></canvas>
+  </div>
+
+  <div class="col-md-6">
+    <canvas id="debitCreditChart"></canvas>
+  </div>
+
+ 
+  <div class="col-md-6">
+    <canvas id="productSalesBarChart"></canvas>
+  </div>
+  
+
+  <div class="col-md-6">
+    <canvas id="productPurchaseBarChart"></canvas>
+  </div>  
+
+  
+</div>

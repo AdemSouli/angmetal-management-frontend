@@ -1,0 +1,71 @@
+<p-table [value]="clients" [paginator]="true" [rows]="10" [responsive]="true" [rowsPerPageOptions]="[5, 10, 20]">
+  <ng-template pTemplate="header">
+    <!-- Button to Add Client -->
+    <button pButton label="Add Client" icon="pi pi-plus" class="p-button-primary" (click)="goToAddClient()"></button>
+
+    <tr>
+      <th>Client Name</th>
+      <th>Adresse</th>
+      <th>Email</th>
+      <th>Numero de telephone</th>
+      <th>Type Client</th>
+      <th>Actions</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-client>
+    <tr>
+      <td>{{ client.name }}</td>
+      <td>{{ client.adresse }}</td>
+      <td>{{ client.email }}</td>
+      <td>{{ client.numeroTel }}</td>
+      <td>{{ client.typeClient }}</td>
+      <td>
+        <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success"
+          (click)="editClient(client)"></button>
+        <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger"
+          (click)="deleteClient(client.clientID)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+
+<!-- Modal Dialog for Add/Edit Client -->
+<p-dialog [(visible)]="displayDialog" [modal]="true" [header]="'Add/Edit Client'" [style]="{ width: '400px' }"
+  [draggable]="false" [resizable]="false">
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="name">Client Name</label>
+      <input id="name" type="text" pInputText [(ngModel)]="selectedClient.name" required />
+    </div>
+
+    <div class="p-field">
+      <label for="contact">Adresse</label>
+      <input id="contact" type="text" pInputText [(ngModel)]="selectedClient.adresse" required />
+    </div>
+
+    <div class="p-field">
+      <label for="email">Email</label>
+      <input id="email" type="email" pInputText [(ngModel)]="selectedClient.email" required />
+    </div>
+
+    <div class="p-field">
+      <label for="Phone">Numero de telephone</label>
+      <input id="phone" type="phone" pInputText [(ngModel)]="selectedClient.numeroTel" required />
+    </div>
+
+    <div class="p-field">
+      <label for="typeClient">Type Client</label>
+      <p-dropdown id="typeClient" [options]="clientOptions" [(ngModel)]="selectedClient.typeClient" 
+        placeholder="Select a Type Client">
+      </p-dropdown>
+    </div>
+
+
+    <p-footer>
+      <button pButton label="Cancel" icon="pi pi-times" class="p-button-text" (click)="closeDialog()"></button>
+      <button pButton label="Save" icon="pi pi-check" class="p-button-text" (click)="saveClient()"></button>
+    </p-footer>
+  </div>
+</p-dialog>

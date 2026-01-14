@@ -1,0 +1,61 @@
+<div class="container">
+    <h2>Banque Management</h2>
+  
+    <button pButton label="Add Banque" icon="pi pi-plus" class="p-button-success" (click)="goToAddBanque()">
+    </button>
+  
+    <p-table [value]="banques" [paginator]="true" [rows]="5" [responsiveLayout]="'scroll'" [style]="{ marginTop: '20px' }">
+      <ng-template pTemplate="header">
+        <tr>          
+          <th>Name</th>
+          <th>Initial Balance</th>
+          <th>Current Balance</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      
+      <ng-template pTemplate="body" let-banque>
+        <tr>          
+          <td>{{ banque.name }}</td>
+          <td>{{ banque.soldeInitial }}</td>
+          <td>{{ banque.soldeActuel }}</td>
+          <td>
+            <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning"
+              (click)="goToEditBanque(banque)">
+            </button>
+            <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger"
+              (click)="deleteBanque(banque.compteID)">
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  
+    <p-dialog header="Banque Details" [(visible)]="display" [modal]="true" [style]="{ width: '400px' }"
+      [draggable]="false" [resizable]="false">
+      <div class="p-fluid">
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" type="text" pInputText [(ngModel)]="selectedBanque.name" placeholder="Enter banque name"
+            required>
+        </div>
+        <div class="field">
+          <label for="soldeInitial">Initial Balance</label>
+          <input id="soldeInitial" type="number" pInputText [(ngModel)]="selectedBanque.soldeInitial"
+            placeholder="Enter initial balance" required>
+        </div>
+        <div class="field">
+          <label for="soldeActuel">Current Balance</label>
+          <input id="soldeActuel" type="number" pInputText [(ngModel)]="selectedBanque.soldeActuel"
+            placeholder="Enter current balance" required>
+        </div>
+      </div>
+      <p-footer>
+        <button pButton label="Save" icon="pi pi-check" class="p-button-primary" (click)="saveBanque()">
+        </button>
+        <button pButton label="Cancel" icon="pi pi-times" class="p-button-secondary" (click)="closeDialog()">
+        </button>
+      </p-footer>
+    </p-dialog>
+  </div>
+  <p-toast></p-toast>

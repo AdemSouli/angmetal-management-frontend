@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'Venera';
+    src: url('/assets/fonts/IvyStyleSans-Regular.ttf') format('truetype');
+    src: url('/assets/fonts/IvyStyleSans-Bold.ttf') format('truetype');
+    font-weight: 700; /* Assuming it's bold, adjust if necessary */
+    font-style: normal;
+  }
+
+  .ba3do {
+    font-family: 'IvyStyleSans', sans-serif;   
+    text-align: center;
+    display: flex ;
+    justify-content: space-between;
+  }
+  .p-text-bold{
+    font-weight: bold;    
+  }
+  .p-field {
+    text-align: left;
+  }
+  

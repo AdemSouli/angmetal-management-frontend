@@ -1,0 +1,178 @@
+<!-- <div class="container">
+    <h2>Timesheet Management</h2>
+  
+    <button 
+      pButton 
+      label="Create New Timesheet" 
+      icon="pi pi-plus" 
+      class="p-button-success" 
+      (click)="openCreateTimesheetDialog()">
+    </button>
+  
+    <p-table [value]="timesheets" [paginator]="true" [rows]="5" [style]="{ marginTop: '20px' }">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Date</th>
+          <th>Hours Worked</th>
+          <th>Report</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-timesheet>
+        <tr>
+          <td>{{ timesheet.date | date: 'shortDate' }}</td>
+          <td>{{ timesheet.heuresTravaillees }}</td>
+          <td>{{ timesheet.report.typeRapport }}</td>
+          <td>
+            <button 
+              pButton 
+              icon="pi pi-pencil" 
+              class="p-button-rounded p-button-warning" 
+              (click)="openEditTimesheetDialog(timesheet)">
+            </button>
+  
+            <button 
+              pButton 
+              icon="pi pi-trash" 
+              class="p-button-rounded p-button-danger" 
+              (click)="deleteTimesheet(timesheet.id)">
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  
+    <p-dialog header="Create Timesheet" [(visible)]="displayCreate" [modal]="true" [style]="{ width: '500px', height: '450px' }">
+      <div class="p-fluid">
+        <div class="field">
+          <input id="timesheetID" type="hidden" [(ngModel)]="selectedTimesheet.id">
+        </div>
+  
+        <div class="p-field">
+          <label for="heuresTravaillees">Hours Worked</label>
+          <input id="heuresTravaillees" type="number" pInputText [(ngModel)]="selectedTimesheet.heuresTravaillees" required />
+        </div>
+  
+        <div class="field">
+          <label for="Date">Date</label>
+          <input id="Date" type="date" pInputText [(ngModel)]="selectedTimesheet.date" required>
+        </div>
+          
+        <div class="field">
+          <label for="report">Report</label>
+          <p-dropdown 
+            id="report" 
+            [(ngModel)]="selectedTimesheet.report"  
+            [options]="reportOptions"  
+            optionLabel="typeRapport" 
+            placeholder="Select a report" 
+            [style]="{ width: '100%' }">
+          </p-dropdown>
+        </div>
+      </div>
+  
+      <p-footer>
+        <button pButton label="Save" icon="pi pi-check" class="p-button-primary" (click)="createTimesheet()"></button>
+        <button pButton label="Cancel" icon="pi pi-times" class="p-button-secondary" (click)="closeCreateDialog()"></button>
+      </p-footer>
+    </p-dialog>
+  
+    <p-dialog header="Edit Timesheet" [(visible)]="displayEdit" [modal]="true" [style]="{ width: '500px' }">
+      <div class="p-fluid">
+        <div class="field">
+          <input id="timesheetID" type="hidden" [(ngModel)]="selectedTimesheet.id">
+        </div>
+  
+        <div class="p-field">
+          <label for="heuresTravaillees">Hours Worked</label>
+          <input id="heuresTravaillees" type="number" pInputText [(ngModel)]="selectedTimesheet.heuresTravaillees" required />
+        </div>
+  
+        <div class="field">
+          <label for="Date">Date</label>
+          <input id="Date" type="date" pInputText [(ngModel)]="selectedTimesheet.date" required>
+        </div>
+          
+        <div class="field">
+          <label for="report">Report</label>
+          <p-dropdown 
+            id="report" 
+            [(ngModel)]="selectedTimesheet.report"
+            [options]="reportOptions"  
+            optionLabel="typeRapport" 
+            placeholder="Select a report" 
+            [style]="{ width: '100%' }">
+          </p-dropdown>
+        </div>
+      </div>
+  
+      <p-footer>
+        <button pButton label="Update" icon="pi pi-check" class="p-button-success" (click)="updateTimesheet()"></button>
+        <button pButton label="Cancel" icon="pi pi-times" class="p-button-secondary" (click)="closeEditDialog()"></button>
+      </p-footer>
+    </p-dialog>
+</div>
+
+<p-toast></p-toast> -->
+
+<div class="container">
+  <h2>Timesheet Management</h2>
+
+  <button 
+    pButton 
+    label="Create New Timesheet" 
+    icon="pi pi-plus" 
+    class="p-button-success" 
+    (click)="openCreateTimesheetDialog()">
+  </button>
+
+  <full-calendar [events]="events" 
+  [plugins]="['dayGrid', 'interaction']" 
+  [eventClick]="onEventClick" 
+  [options]="calendarOptions">
+</full-calendar>
+
+
+  <!-- Dialog for creating timesheet -->
+  <p-dialog header="Create Timesheet" [(visible)]="displayCreate" [modal]="true" [style]="{ width: '500px', height: '450px' }">
+    <div class="p-fluid">
+      <div class="p-field">
+        <input id="timesheetID" type="hidden" [(ngModel)]="selectedTimesheet.id">
+      </div>
+
+      <div class="p-field">
+        <label for="heuresTravaillees">Hours Worked</label>
+        <input id="heuresTravaillees" type="number" pInputText [(ngModel)]="selectedTimesheet.heuresTravaillees" required />
+      </div>
+
+      <div class="field">
+        <label for="Date">Date</label>
+        <input type="date" pInputText [(ngModel)]="selectedTimesheet.date" required>
+      </div>
+
+      <!-- <div class="field">
+        <label for="periodeDebut">Start Period</label>
+        <input id="periodeDebut" type="date" pInputText [(ngModel)]="selectedReport.periodeDebut"  required>
+      </div> -->
+
+      <div class="field">
+        <label for="report">Report</label>
+        <p-dropdown 
+          id="report" 
+          [(ngModel)]="selectedTimesheet.report"  
+          [options]="reportOptions"  
+          optionLabel="typeRapport" 
+          placeholder="Select a report" 
+          [style]="{ width: '100%' }">
+        </p-dropdown>
+      </div>
+    </div>
+
+    <p-footer>
+      <button pButton label="Save" icon="pi pi-check" class="p-button-primary" (click)="createTimesheet()"></button>
+      <button pButton label="Cancel" icon="pi pi-times" class="p-button-secondary" (click)="closeCreateDialog()"></button>
+    </p-footer>
+  </p-dialog>
+</div>
+
+<p-toast></p-toast>

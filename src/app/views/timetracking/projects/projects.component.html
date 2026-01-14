@@ -1,0 +1,107 @@
+<div class="container">
+    <h2>Project Management</h2>
+  
+    <!-- Button to open the project creation dialog -->
+    <button pButton label="Create Project" icon="pi pi-plus" class="p-button-success" (click)="openCreateProjectDialog()"></button>
+  
+    <!-- Project List Table -->
+    <p-table [value]="projects" [paginator]="true" [rows]="5" [style]="{ marginTop: '20px' }">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Project Name</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-project>
+        <tr>
+          <td>{{ project.nomProjet }}</td>
+          <td>{{ project.dateDebut | date }}</td>
+          <td>{{ project.dateFin | date }}</td>
+          <td>{{ project.statut }}</td>
+          <td>
+
+            <!-- Edit Button -->
+            <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning" (click)="openEditProjectDialog(project)"></button>
+  
+            <!-- Delete Button -->
+            <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteProject(project.id)"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  
+    <!-- Project Dialog -->
+    <p-dialog header="Project Details" [(visible)]="displayDialog" [modal]="true" [style]="{ width: '400px' , height:'500px' }">
+      <div class="p-fluid">
+        <!-- Project Name -->
+        <div class="field">
+          <label for="name">Project Name</label>
+          <input id="name" type="text" pInputText [(ngModel)]="selectedProject.nomProjet" placeholder="Enter project name" required>
+        </div>
+  
+
+           <!-- Status -->
+           <div class="field">
+            <label for="status">Status</label>
+            <p-dropdown 
+              id="status" 
+              [options]="statusProject" 
+              [(ngModel)]="selectedProject.statut"              
+              placeholder="Select project status" 
+              >
+            </p-dropdown>
+          </div>
+
+            <!-- clients -->
+            <div class="field">
+              <label for="client">Clients</label>
+              <p-dropdown 
+                id="client" 
+                [options]="clients" 
+                [(ngModel)]="selectedProject.client"              
+                optionLabel="name"  
+                placeholder="Select client" 
+              >
+              </p-dropdown>
+            </div>
+            <!-- companies -->
+            <div class="field">
+              <label for="companies">Companies</label>
+              <p-dropdown 
+                id="companies" 
+                [options]="companies"  
+                [(ngModel)]="selectedProject.company"  
+                optionLabel="name"
+                placeholder="Select company" 
+              >
+              </p-dropdown>
+            </div>
+
+        <!-- Start Date -->
+        <div class="field">
+          <label for="startDate">Start Date</label>
+          <input id="startDate" type="date" pInputText [(ngModel)]="selectedProject.dateDebut" required>
+        </div>
+  
+        <!-- End Date -->
+        <div class="field">
+          <label for="endDate">End Date</label>
+          <input id="endDate" type="date" pInputText [(ngModel)]="selectedProject.dateFin" required>
+        </div>
+  
+             
+
+
+      </div>
+      <p-footer>
+        <button pButton label="Save" icon="pi pi-check" class="p-button-primary" (click)="saveProject()"></button>
+        <button pButton label="Cancel" icon="pi pi-times" class="p-button-secondary" (click)="closeDialog()"></button>
+      </p-footer>
+    </p-dialog>
+  </div>
+
+  <p-toast></p-toast>
+  

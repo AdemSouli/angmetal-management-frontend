@@ -1,0 +1,61 @@
+<p-table [value]="vendors" [paginator]="true" [rows]="10" [responsive]="true" [rowsPerPageOptions]="[5, 10, 20]">
+    <ng-template pTemplate="header">
+        <!-- Button to Add Vendor -->
+        <button pButton label="Add Vendor" icon="pi pi-plus" class="p-button-primary"
+            (click)="openAddVendorDialog()"></button>
+
+        <tr>
+            <th>Vendor Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-vendor>
+        <tr>
+            <td>{{ vendor.name }}</td>
+            <td>{{ vendor.email }}</td>
+            <td>{{ vendor.adresse }}</td>
+            <td>{{ vendor.numeroTel }}</td>
+            <td>
+<button pButton icon="pi pi-pencil" class="p-button-rounded p-button-success"(click)="openEditVendorDialog(vendor)"></button>
+<button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger"(click)="deleteVendor(vendor.fournisseurID)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<!-- Add/Edit Vendor Dialog -->
+<p-dialog [(visible)]="displayDialog" [modal]="true" [header]="newVendor ? 'Add Vendor' : 'Edit Vendor'"
+    [style]="{ width: '400px' }" [draggable]="false" [resizable]="false">
+    <div class="p-fluid">
+
+        <div class="p-field">
+            <label for="name">Vendor Name</label>
+            <input id="name" type="text" pInputText [(ngModel)]="selectedVendor.name" required />
+        </div>
+
+        <div class="p-field">
+            <label for="email">Email</label>
+            <input id="email" type="email" pInputText [(ngModel)]="selectedVendor.email" required />
+        </div>
+
+        <div class="p-field">
+            <label for="address">Address</label>
+            <input id="address" type="text" pInputText [(ngModel)]="selectedVendor.adresse" />
+        </div>
+
+        <div class="p-field">
+            <label for="contact">Phone Number</label>
+            <input id="contact" type="text" pInputText [(ngModel)]="selectedVendor.numeroTel" required />
+        </div>
+
+        <p-footer>
+            <button pButton label="Cancel" icon="pi pi-times" class="p-button-text" (click)="closeDialog()"></button>
+            <button pButton label="Save" icon="pi pi-check" class="p-button-text" (click)="saveVendor()"></button>
+        </p-footer>
+    </div>
+</p-dialog>
+<p-toast></p-toast>

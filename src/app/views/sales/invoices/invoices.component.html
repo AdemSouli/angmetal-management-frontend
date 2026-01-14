@@ -1,0 +1,191 @@
+<!-- Button Group -->
+<div class="button-group">
+  <button pButton label="Create Invoice" (click)="showCreateInvoiceDialog()" class="mt-3 ml-2"></button>
+</div>
+
+<!-- Full Invoice Details Panel -->
+<p-panel *ngFor="let invoice of factureVentes" header="Invoice #{{ invoice.factureID }}" [toggleable]="true"
+  [collapsed]="false" class="invoice-panel">
+
+  <!-- Invoice Details Section -->
+  <div class="p-fluid p-grid ba3do ">
+
+    <div class="leftDetails">
+
+      <!-- Invoice Type -->
+      <div class="p-field p-col-12 p-md-6">
+        <label class="p-text-bold">Invoice Type:</label>
+        <span class="p-text-bold">SALES</span>
+      </div>
+
+      <!-- Issue Date -->
+      <div class="p-field p-col-12 p-md-6">
+        <label class="">Issue Date:</label>
+        <span>{{ invoice.dateEmission | date: 'mediumDate' }}</span>
+      </div>
+
+      <!-- Due Date -->
+      <div class="p-field p-col-12 p-md-6">
+        <label class="">Due Date:</label>
+        <span>{{ invoice.dateEcheance | date: 'mediumDate' }}</span>
+      </div>
+
+      <!-- Payment Type -->
+      <div class="p-field p-col-12 p-md-6">
+        <label class="p-text-bold">Payment Type:</label>
+        <span>{{ invoice.paymentType }}</span>
+      </div>
+    </div>
+  
+  <div class="rightDetails">
+    <!-- Total Amount -->
+    <div class="p-field p-col-12 p-md-6">
+      <label class="p-text-bold">Total Amount</label>
+      <br>
+      <span>{{ invoice.montantTotal | currency: 'TND' }}</span>
+    </div>
+  </div>
+</div>
+  <!-- Client Details Section -->
+  <p-panel header="Client Details" class="ClientDetails" [toggleable]="true" [collapsed]="false"
+    class="invoice-sub-panel ">
+    <div class="p-fluid p-grid ba3do ClientDetails">
+<div class="leftDetails">
+  <div class="p-field p-col-12 p-md-6 p-text-bold ">
+    <label class="p-text-bold ">Sold to :</label>
+    <span>{{ invoice.client.name }}</span>
+  </div>
+  <div class="p-field p-col-12 p-md-6">
+    <label class="">Address:</label>
+    <span>{{ invoice.client.adresse }}</span>
+  </div>
+  <div class="p-field p-col-12 p-md-6">
+    <label class="">Email:</label>
+    <span>{{ invoice.client.email }}</span>
+  </div>
+</div>
+    <div class="rightDetails">
+      <div class="p-field p-col-12 p-md-6">
+        <label class="p-text-bold">Phone</label>
+        <br>
+        <span>{{ invoice.client.numeroTel }}</span>
+      </div>
+
+    </div>
+     
+    </div>
+  </p-panel>
+
+  <!-- Products Table Section -->
+  <p-table [value]="invoice.products" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+    <!-- Product Table Header -->
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Product Name</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Tax</th>
+        <th>Total Price</th>
+      </tr>
+    </ng-template>
+
+    <!-- Product Table Body -->
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.prixUnitaire | currency }}</td>
+        <td>{{ product.quantiteEnStock }}</td>
+        <td>{{ product.taxe }}%</td>
+        <td>{{ ((product.quantiteEnStock * product.prixUnitaire)) * (1 + product.taxe / 100) | currency }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Generate PDF Button -->
+  <div class="text-center mt-3">
+    <button pButton label="Generate PDF" (click)="generatePDF(invoice)" class="p-button-success"></button>
+  </div>
+
+</p-panel>
+
+<!-- Create Invoice Modal -->
+<p-dialog header="Create Invoice" [(visible)]="displayCreateInvoice" [modal]="true"
+  [style]="{width: '500px', height: '600px'}">
+  <div class="p-fluid">
+
+    <!-- Issue Date -->
+    <div class="p-field">
+      <label for="dateEmission">Issue Date</label>
+      <p-calendar id="dateEmission" [(ngModel)]="invoice.dateEmission" dateFormat="yy-mm-dd" [minDate]="minDate"
+        [maxDate]="maxDate" placeholder="Select Issue Date" [readonlyInput]="false">
+      </p-calendar>
+    </div>
+
+    <!-- Due Date -->
+    <div class="p-field">
+      <label for="dateEcheance">Due Date</label>
+      <p-calendar id="dateEcheance" [(ngModel)]="invoice.dateEcheance" dateFormat="yy-mm-dd"
+        [minDate]="invoice.dateEmission" placeholder="Select Due Date" [readonlyInput]="false">
+      </p-calendar>
+    </div>
+
+    <!-- Payment Type -->
+    <div class="p-field">
+      <label for="paymentType">Payment Type</label>
+      <p-dropdown id="paymentType" [options]="paymentType" [(ngModel)]="invoice.paymentType"
+        placeholder="Select a payment type"></p-dropdown>
+    </div>
+
+    <!-- Banque Selection (Single Banque Dropdown) -->
+    <div class="p-field">
+      <label for="Banque">Select Banque</label>
+      <p-dropdown [options]="banques" [(ngModel)]="invoice.compteID" optionLabel="name" optionValue="compteID"
+        placeholder="Select Banque" [required]="true">
+      </p-dropdown>
+    </div>
+
+    <!-- Client Selection (Single Client Dropdown) -->
+    <div class="p-field">
+      <label for="Clients">Select Clients</label>
+      <p-dropdown [options]="clients" [(ngModel)]="invoice.clientID" optionLabel="name" optionValue="clientID"
+        placeholder="Select Client" [required]="true">
+      </p-dropdown>
+    </div>
+
+    <!-- Product List Selection -->
+    <div class="p-field">
+      <br>
+      <!-- Add New Product Button -->
+      <button pButton icon="pi pi-plus" (click)="addNewProduct()" class="p-button-success"></button>
+      <label for="productList">Add Products</label>
+      <br>
+      <!-- Loop through selectedProducts to display product selection dropdowns -->
+      <div *ngFor="let selectedProduct of selectedProducts; let i = index">
+        <div class="p-d-flex p-ai-center">
+          <p-dropdown [options]="products" [(ngModel)]="selectedProduct.product" optionLabel="name"
+            optionValue="productID" placeholder="Select Product" (onChange)="onProductSelect(i)">
+          </p-dropdown>
+
+          <!-- Quantity input for each selected product -->
+          <input type="number" [(ngModel)]="selectedProduct.quantity" pInputText placeholder="Quantity" [min]="1"
+            [max]="getMaxQuantity(selectedProduct.product)" (ngModelChange)="onProductSelect(i)" required />
+
+
+          <!-- Remove button for each selected product -->
+          <button pButton icon="pi pi-times" (click)="removeProduct(i)" class="p-button-danger p-button-text"></button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <!-- Footer for Actions -->
+  <ng-template pTemplate="footer">
+    <button pButton label="Cancel" icon="pi pi-times" class="p-button-text"
+      (click)="displayCreateInvoice = false"></button>
+    <!-- Save Button (Disabled if conditions are not met) -->
+    <button pButton label="Save Invoice" (click)="createInvoice()" [disabled]="isSaveButtonDisabled()"
+      class="p-button-success"></button>
+  </ng-template>
+</p-dialog>
+<p-toast></p-toast>

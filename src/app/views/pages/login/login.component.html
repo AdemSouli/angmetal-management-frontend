@@ -1,0 +1,102 @@
+<div class="bg-light min-vh-100 d-flex justify-content-center align-items-center">
+  <c-container>
+    <c-row class="justify-content-center">
+      <c-col md="8">
+        <c-card-group class="shadow-lg">
+          <!-- Login Card -->
+          <c-card class="p-4 border-0">
+            <c-card-body>
+              <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <!-- Title and Subtitle -->
+                <h1 class="text-center mb-4 fw-bold">Login</h1>
+                <p class="text-center text-medium-emphasis mb-4">Sign in to your account</p>
+                
+                <!-- Username Input -->
+                <div class="mb-3 position-relative">
+                  <span class="icon-container">
+                    <i class="pi pi-user"></i>
+                  </span>
+                  <input
+                    type="text"
+                    formControlName="username"
+                    class="form-control ps-5"
+                    placeholder="Username"
+                    autoComplete="username"
+                    aria-label="Username"
+                  />
+                </div>
+                <small class="text-danger" *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.hasError('required')">
+                  Username is required.
+                </small>
+                <small class="text-danger" *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.hasError('minlength')">
+                  Username must be at least 6 characters.
+                </small>
+                <small class="text-danger" *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.hasError('maxlength')">
+                  Username must be less than 24 characters.
+                </small>
+
+                <!-- Password Input -->
+                <div class="mb-4 position-relative">
+                  <span class="icon-container">
+                    <i class="pi pi-lock icon-sm"></i>
+                  </span>
+                  <input
+                    type="password"
+                    formControlName="password"
+                    class="form-control ps-5"
+                    placeholder="Password"
+                    autoComplete="current-password"
+                    aria-label="Password"
+                  />
+                </div>
+                <small class="text-danger" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('required')">
+                  Password is required.
+                </small>
+                <small class="text-danger" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('minlength')">
+                  Password must be at least 6 characters.
+                </small>
+                <small class="text-danger" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.hasError('maxlength')">
+                  Password must be less than 64 characters.
+                </small>
+
+                <!-- Action Buttons -->
+                <c-row>
+                  <c-col xs="6">
+                    <button cButton class="px-4 w-100" color="primary" [disabled]="loginForm.invalid" type="submit">
+                      Login
+                    </button>
+                  </c-col>
+                  <c-col xs="6" class="text-end">
+                    <button cButton class="px-0 text-decoration-none" color="link">
+                      Forgot password?
+                    </button>
+                  </c-col>
+                </c-row>
+              </form>
+            </c-card-body>
+          </c-card>
+
+          <!-- Sign-Up Card -->
+          <c-card class="text-white bg-primary py-5 d-flex justify-content-center align-items-center border-0">
+            <c-card-body class="text-center">
+              <div>
+                <h2 class="mb-3 fw-bold">Sign up</h2>
+                <p class="mb-4">
+                  Join us today and enjoy exclusive benefits. It's quick and easy to get started.
+                </p>
+                <button
+                  cButton
+                  class="mt-3 px-4 py-2"
+                  color="light"
+                  routerLink="/register"
+                >
+                  Register Now!
+                </button>
+              </div>
+            </c-card-body>
+          </c-card>
+        </c-card-group>
+      </c-col>
+    </c-row>
+  </c-container>
+</div>

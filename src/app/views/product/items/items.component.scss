@@ -1,0 +1,45 @@
+.container {
+    padding: 20px;
+  }
+  
+  p-table {
+    margin: 20px 0;
+    width: 100%;
+  }
+  
+  p-dialog {
+    .p-dialog-header {
+      background-color: #007ad9;
+      color: white;
+    }
+  }
+
+/* Style for the card grid container */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid layout */
+  gap: 1rem; /* Adds space between the cards horizontally and vertically */
+  padding: 1rem;
+}
+
+/* Ensure all cards have the same size regardless of their content */
+.card-grid p-card {
+  width: 19rem;  /* Fixed width for cards */
+  height: 25rem; /* Fixed height for cards (adjust as needed) */
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  justify-content: space-between; /* Ensures the buttons stay at the bottom of the card */
+}
+
+/* Optional: Adjust content to fit within fixed-size cards */
+.card-grid p-card .p-card-body {
+  flex-grow: 1; /* Ensures body content expands to fill available space */
+  overflow: hidden; /* Prevents overflowing content */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-grid p-card .p-button {
+  margin-top: 1rem; /* Adds space above buttons */
+}

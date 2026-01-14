@@ -1,0 +1,165 @@
+<div class="bg-light dark:bg-transparent min-vh-100 d-flex align-items-center justify-content-center">
+  <c-container>
+    <c-row class="justify-content-center">
+      <c-col lg="6" md="8" xl="5">
+        <c-card class="shadow-lg border-0">
+          <c-card-body class="p-5">
+            <!-- Registration Form -->
+            <form (ngSubmit)="signup()" #registerForm="ngForm">
+              <!-- Title and Subtitle -->
+              <h1 class="text-center mb-4 fw-bold">Register</h1>
+              <p class="text-center text-medium-emphasis mb-4">Create your account to get started</p>
+
+
+              <!-- Username Field -->
+              <div class="mb-3 position-relative">
+                <span class="icon-container">
+                  <i class="pi pi-user icon-sm"></i>
+                </span>
+                <input [(ngModel)]="user.username" name="username" cFormControl placeholder="Username" type="text"
+                  class="form-control ps-5" required minlength="6" maxlength="24" pattern="^[a-zA-Z0-9]*$"
+                  aria-label="Username" />
+              </div>
+              <small class="text-danger"
+                *ngIf="registerForm.controls['username']?.invalid && registerForm.controls['username']?.touched">
+                Username must be 6-24 characters, alphanumeric, with no spaces or special characters.
+              </small>
+
+              <!-- FirstName Field -->
+              <div class="mb-3 position-relative">
+                <span class="icon-container">
+                  <i class="pi pi-users icon-sm"></i>
+                </span>
+                <input [(ngModel)]="user.firstName" name="firstName" cFormControl placeholder="First Name" type="text"
+                  class="form-control ps-5" required minlength="6" maxlength="24" pattern="^[^ ]*$"
+                  aria-label="First Name" />
+              </div>
+              <small class="text-danger"
+                *ngIf="registerForm.controls['firstName']?.invalid && registerForm.controls['firstName']?.touched">
+                First Name must be 6-24 characters with no spaces.
+              </small>
+
+              <!-- LastName Field -->
+              <div class="mb-3 position-relative">
+                <span class="icon-container">
+                  <i class="pi pi-user-plus icon-sm"></i>
+                </span>
+                <input [(ngModel)]="user.lastName" name="lastName" cFormControl placeholder="Last Name" type="text"
+                  class="form-control ps-5" required minlength="6" maxlength="24" pattern="^[^ ]*$"
+                  aria-label="Last Name" />
+              </div>
+              <small class="text-danger"
+                *ngIf="registerForm.controls['lastName']?.invalid && registerForm.controls['lastName']?.touched">
+                Last Name must be 6-24 characters with no spaces.
+              </small>
+
+              <!-- Address Field -->
+              <div class="mb-3 position-relative">
+                <span class="icon-container">
+                  <i class="pi pi-home icon-sm"></i>
+                </span>
+                <input [(ngModel)]="user.address" name="address" cFormControl placeholder="Address" type="text"
+                  class="form-control ps-5" required minlength="6" maxlength="24" aria-label="Address" />
+              </div>
+              <small class="text-danger"
+                *ngIf="registerForm.controls['address']?.invalid && registerForm.controls['address']?.touched">
+                Address must be 6-24 characters.
+              </small>
+
+              <!-- PhoneNumber Field -->
+              <div class="mb-3 position-relative">
+                <span class="icon-container">                 
+                  <i class="pi pi-phone icon-sm"></i>
+                </span>
+                <input [(ngModel)]="user.phoneNumber" name="phoneNumber" cFormControl placeholder="Phone Number"
+                  type="text" class="form-control ps-5" required minlength="8" maxlength="15" pattern="^[^ ]*$"
+                  aria-label="Phone Number" />
+              </div>
+              <small class="text-danger"
+                *ngIf="registerForm.controls['phoneNumber']?.invalid && registerForm.controls['phoneNumber']?.touched">
+                Phone Number must be 8-15 characters with no spaces.
+              </small>
+
+              <!-- Email Field -->
+              <div class="mb-3 position-relative">
+                <span class="icon-container">
+                  <i class="pi pi-envelope icon-sm"></i>
+                </span>
+                <input [(ngModel)]="user.email" name="email" cFormControl placeholder="Email" type="email"
+                  class="form-control ps-5" required aria-label="Email" />
+              </div>
+              <small class="text-danger"
+                *ngIf="registerForm.controls['email']?.invalid && registerForm.controls['email']?.touched">
+                Please enter a valid email address.
+              </small>
+
+              <!-- Password Field -->
+              <div class="mb-3 position-relative">
+                <span class="icon-container">
+                  <i class="pi pi-lock icon-sm"></i>
+                </span>
+                <input [(ngModel)]="user.password" name="password" cFormControl placeholder="Password" type="password"
+                  class="form-control ps-5" required minlength="8" maxlength="64" pattern="^[^ ]*$"
+                  aria-label="Password" />
+              </div>
+              <small class="text-danger"
+                *ngIf="registerForm.controls['password']?.invalid && registerForm.controls['password']?.touched">
+                Password must be 8-64 characters with no spaces.
+              </small>
+
+              <!-- Company Dropdown Field -->
+              <div class="mb-3 position-relative">
+                <label for="company" class="form-label">Company</label>
+                <select [(ngModel)]="user.companyId"  name="company" class="form-select" required>
+                  <i class="pi pi-shield"></i>
+                  <option value="" disabled>Select a company</option>
+                  <option *ngFor="let company of companies" [value]="company.id">
+                    <i class="pi pi-shield"></i>
+                    {{ company.name }}
+                  </option>
+                </select>
+              </div>
+              
+              <small class="text-danger" *ngIf="!user.companyId && registerForm.submitted">
+                Please select a company.
+              </small>
+
+              <!-- Roles Field -->
+              <div class="mb-3">
+                <label for="roles" class="form-label">Roles</label>
+                <select [(ngModel)]="user.roles" name="roles" cFormControl class="form-select" required
+                  aria-label="Roles">
+                  <option value="" disabled>Select roles</option>
+                  <option value="ROLE_EMPLOYEE">Employee</option>
+                  <option value="ROLE_USER">Computable</option>
+                </select>
+              </div>
+              <small class="text-danger"
+                *ngIf="registerForm.controls['roles']?.invalid && registerForm.controls['roles']?.touched">
+                Please select at least one role.
+              </small>
+
+              <!-- Submit Button -->
+              <div class="d-grid mt-4">
+                <button cButton color="success" class="py-2 px-4" [disabled]="registerForm.invalid || isLoading"
+                  (click)="signup()" type="submit">
+                  <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+                  Create Account
+                </button>
+              </div>
+
+            </form>
+
+            <!-- Login Link -->
+            <p class="text-center mt-3">
+              Already have an account?
+              <a routerLink="/login" class="text-decoration-none text-primary fw-bold">
+                Login
+              </a>
+            </p>
+          </c-card-body>
+        </c-card>
+      </c-col>
+    </c-row>
+  </c-container>
+</div>

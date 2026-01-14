@@ -1,0 +1,83 @@
+<div class="container">
+  <!-- Company Management Header -->
+  <h2>Company Management</h2>
+
+  <!-- Add New Company Button -->
+  <button pButton label="Add Company" icon="pi pi-plus" class="p-button-success" (click)="goToAddCompany()">
+  </button>
+
+  <!-- Company List Table -->
+  <p-table [value]="companies" [paginator]="true" [rows]="5" [responsiveLayout]="'scroll'"
+    [style]="{ marginTop: '20px' }">
+
+    <!-- Table Header -->
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Location</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+
+    <!-- Table Body -->
+    <ng-template pTemplate="body" let-company>
+      <tr>
+        <td>{{ company.name }}</td>
+        <td>{{ company.description }}</td>
+        <td>{{ company.location }}</td>
+        <td>
+          <!-- Edit Company Button -->
+          <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning"
+            (click)="goToEditCompany(company)">
+          </button>
+
+          <!-- Delete Company Button -->
+          <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger"
+            (click)="deleteCompany(company.id)">
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Company Dialog -->
+  <p-dialog header="Company Details" [(visible)]="display" [modal]="true" [style]="{ width: '400px' }"
+    [draggable]="false" [resizable]="false">
+
+    <div class="p-fluid">
+      <!-- Name Field -->
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" type="text" pInputText [(ngModel)]="selectedCompany.name" placeholder="Enter company name"
+          required>
+      </div>
+
+      <!-- Description Field -->
+      <div class="field">
+        <label for="description">Description</label>
+        <textarea id="description" pInputTextarea [(ngModel)]="selectedCompany.description"
+          placeholder="Enter company description"></textarea>
+      </div>
+
+      <!-- Location Field -->
+      <div class="field">
+        <label for="location">Location</label>
+        <input id="location" type="text" pInputText [(ngModel)]="selectedCompany.location"
+          placeholder="Enter company location" required>
+      </div>
+    </div>
+
+    <!-- Dialog Footer -->
+    <p-footer>
+      <!-- Save Button -->
+      <button pButton label="Save" icon="pi pi-check" class="p-button-primary" (click)="saveCompany()">
+      </button>
+
+      <!-- Cancel Button -->
+      <button pButton label="Cancel" icon="pi pi-times" class="p-button-secondary" (click)="closeDialog()">
+      </button>
+    </p-footer>
+  </p-dialog>
+</div>
+  <p-toast></p-toast>
